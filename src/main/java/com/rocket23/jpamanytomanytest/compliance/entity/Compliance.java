@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.rocket23.jpamanytomanytest.common.BaseEntity;
+import com.rocket23.jpamanytomanytest.common.entity.BaseEntity;
+import com.rocket23.jpamanytomanytest.compliance.dto.ComplianceDto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -41,5 +42,12 @@ public class Compliance extends BaseEntity {
 	public Compliance(String complianceName, String complianceNumber){
 		this.complianceName = complianceName;
 		this.complianceNumber = complianceNumber;
+	}
+
+	public static Compliance toEnitiy(ComplianceDto complianceDto){
+		return Compliance.builder()
+			.complianceName(complianceDto.getComplianceName())
+			.complianceNumber(complianceDto.getComplianceNumber())
+			.build();
 	}
 }

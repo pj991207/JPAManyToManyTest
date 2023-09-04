@@ -10,9 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import net.bytebuddy.utility.nullability.NeverNull;
-
-import com.rocket23.jpamanytomanytest.common.BaseEntity;
+import com.rocket23.jpamanytomanytest.common.entity.BaseEntity;
+import com.rocket23.jpamanytomanytest.compliance.dto.ComplianceDto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -41,11 +40,19 @@ public class PolicyCompliance extends BaseEntity {
 	private String complianceDetail;
 
 	@Builder
-	public PolicyCompliance(String complianceDetail, Compliance compliance, BasePolicy basePolicy){
+	public PolicyCompliance(String complianceDetail, Compliance compliance, BasePolicy basePolicy) {
 		this.complianceDetail = complianceDetail;
 		this.compliance = compliance;
 		this.basePolicy = basePolicy;
 		compliance.getPolicyComplianceList().add(this);
 		basePolicy.getPolicyComplianceList().add(this);
+	}
+
+	public static PolicyCompliance toEntity(ComplianceDto complianceDto, BasePolicy basePolicy, Compliance compliance) {
+		return PolicyCompliance.builder()
+			.compliance(compliance)
+			.basePolicy(basePolicy)
+			.complianceDetail(complianceDto.getComplianceDetail())
+			.build();
 	}
 }

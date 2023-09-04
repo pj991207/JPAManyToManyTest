@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.rocket23.jpamanytomanytest.common.BaseEntity;
+import com.rocket23.jpamanytomanytest.common.entity.BaseEntity;
+import com.rocket23.jpamanytomanytest.compliance.dto.ComplianceDto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -29,7 +30,7 @@ public class BasePolicy extends BaseEntity {
 	@Column(name = "BASE_POLICY_ID")
 	private Long id;
 
-	@Column(name = "DEFAULT_POLICT_NAME")
+	@Column(name = "DEFAULT_POLICY_NAME")
 	private String policyName;
 
 	@OneToMany(mappedBy = "basePolicy")
@@ -38,5 +39,9 @@ public class BasePolicy extends BaseEntity {
 	@Builder
 	public BasePolicy(String policyName){
 		this.policyName = policyName;
+	}
+
+	public static BasePolicy toEntity(ComplianceDto complianceDto){
+		return BasePolicy.builder().policyName(complianceDto.getPolicyName()).build();
 	}
 }
