@@ -1,4 +1,4 @@
-package com.rocket23.jpamanytomanytest.common;
+package com.rocket23.jpamanytomanytest.common.entity;
 
 import java.time.LocalDateTime;
 
