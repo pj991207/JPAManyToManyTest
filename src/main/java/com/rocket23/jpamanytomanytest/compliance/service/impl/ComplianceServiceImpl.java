@@ -24,16 +24,16 @@ public class ComplianceServiceImpl implements ComplianceService {
 
 	@Override
 	public boolean save(ComplianceDto complianceDto) {
-		try{
+		try {
 			BasePolicy basePolicy = BasePolicy.toEntity(complianceDto);
 			Compliance compliance = Compliance.toEnitiy(complianceDto);
-			PolicyCompliance policyCompliance = PolicyCompliance.toEntity(complianceDto,basePolicy,compliance);
+			PolicyCompliance policyCompliance = PolicyCompliance.toEntity(complianceDto, basePolicy, compliance);
 			basePolicyRepository.save(basePolicy);
 			complianceRepository.save(compliance);
 			policyComplianceRepository.save(policyCompliance);
 			return true;
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			return false;
 		}
 	}
