@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${PATH}
+    username: ${ID}
+    password: ${PW}
+
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
