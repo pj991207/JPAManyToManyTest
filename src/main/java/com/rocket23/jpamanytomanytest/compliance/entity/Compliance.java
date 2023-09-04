@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import com.rocket23.jpamanytomanytest.common.BaseEntity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,7 +34,12 @@ public class Compliance extends BaseEntity {
 	@Column(name = "COMPLIANCE_NAME")
 	private String complianceName;
 
-	@OneToMany(mappedBy = "policycompliance")
+	@OneToMany(mappedBy = "compliance")
 	private List<PolicyCompliance> policyComplianceList = new ArrayList<>();
 
+	@Builder
+	public Compliance(String complianceName, String complianceNumber){
+		this.complianceName = complianceName;
+		this.complianceNumber = complianceNumber;
+	}
 }
